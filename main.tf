@@ -53,7 +53,7 @@ module "eks" {
   version = "19.5.1"
 
   cluster_name    = local.cluster_name
-  cluster_version = "1.24"
+  cluster_version = "1.29"
 
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.public_subnets
@@ -108,7 +108,7 @@ module "irsa-ebs-csi" {
 resource "aws_eks_addon" "ebs-csi" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "aws-ebs-csi-driver"
-  addon_version            = "v1.25.0-eksbuild.1"
+  addon_version            = "v1.27.0-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
   tags = {
     "eks_addon" = "ebs-csi"
@@ -118,7 +118,7 @@ resource "aws_eks_addon" "ebs-csi" {
 resource "aws_eks_addon" "kube-proxy" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "kube-proxy"
-  addon_version            = "v1.28.1-eksbuild.1"
+  addon_version            = "v1.29.0-eksbuild.1" 
   tags = {
     "eks_addon" = "kube-proxy"
     "terraform" = "true"
@@ -127,7 +127,7 @@ resource "aws_eks_addon" "kube-proxy" {
 resource "aws_eks_addon" "vpc-cni" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "vpc-cni"
-  addon_version            = "v1.15.4-eksbuild.1"
+  addon_version            = "v1.16.0-eksbuild.1"
   tags = {
     "eks_addon" = "vpc-cni"
     "terraform" = "true"
