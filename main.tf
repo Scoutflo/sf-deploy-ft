@@ -136,7 +136,7 @@ resource "aws_eks_addon" "vpc-cni" {
 resource "aws_eks_addon" "coredns" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "coredns"
-  addon_version            = "v1.10.1-eksbuild.4" 
+  addon_version            = "v1.10.1-eksbuild.6" 
   tags = {
     "eks_addon" = "coredns"
     "terraform" = "true"
