@@ -96,7 +96,7 @@ data "aws_iam_policy" "ebs_csi_policy" {
 
 module "irsa-ebs-csi" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
-  version = "4.7.0"
+  version = "5.34.0"
 
   create_role                   = true
   role_name                     = "AmazonEKSTFEBSCSIRole-${module.eks.cluster_name}"
@@ -108,7 +108,7 @@ module "irsa-ebs-csi" {
 resource "aws_eks_addon" "ebs-csi" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "aws-ebs-csi-driver"
-  addon_version            = "v1.21.0-eksbuild.1"
+  addon_version            = "v1.25.0-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
   tags = {
     "eks_addon" = "ebs-csi"
@@ -118,7 +118,7 @@ resource "aws_eks_addon" "ebs-csi" {
 resource "aws_eks_addon" "kube-proxy" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "kube-proxy"
-  addon_version            = "v1.24.7-eksbuild.2"
+  addon_version            = "v1.28.1-eksbuild.1"
   tags = {
     "eks_addon" = "kube-proxy"
     "terraform" = "true"
@@ -127,7 +127,7 @@ resource "aws_eks_addon" "kube-proxy" {
 resource "aws_eks_addon" "vpc-cni" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "vpc-cni"
-  addon_version            = "v1.11.4-eksbuild.1"
+  addon_version            = "v1.15.4-eksbuild.1"
   tags = {
     "eks_addon" = "vpc-cni"
     "terraform" = "true"
@@ -136,7 +136,7 @@ resource "aws_eks_addon" "vpc-cni" {
 resource "aws_eks_addon" "coredns" {
   cluster_name             = module.eks.cluster_name
   addon_name               = "coredns"
-  addon_version            = "v1.8.7-eksbuild.3"
+  addon_version            = "v1.10.1-eksbuild.4" 
   tags = {
     "eks_addon" = "coredns"
     "terraform" = "true"
