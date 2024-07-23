@@ -10,13 +10,13 @@ variable "region" {
 variable "cluster_name" {
   description = "Cluster name"
   type = string
-  default = "scoutflo-deploy-test"
+  default = "sf-deploy-ft"
 }
 
 variable "instance_type" {
   description = "Instance Type"
   type = string
-  default = "t2.small"
+  default = "t3a.xlarge"
 }
 
 variable "min_size" {
@@ -28,7 +28,7 @@ variable "min_size" {
 variable "max_size" {
   description = "Max number of nodes"
   type = number
-  default = 3
+  default = 5
 }
 
 variable "desired_size" {
